@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultura informației și tehnologiile informaționale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>Cultura Informației, Tehnologii și Game Design Sci-Fi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #050b14;
-            --panel-bg: rgba(10, 25, 47, 0.85);
+            --bg-color: #030712;
+            --panel-bg: rgba(8, 18, 38, 0.85);
             --primary-glow: #00f3ff;
-            --secondary-glow: #7000ff;
-            --accent-color: #00ff66;
-            --text-main: #c0d8ff;
+            --secondary-glow: #ff0055;
+            --accent-green: #00ff66;
+            --text-main: #b8d4ff;
             --text-bright: #ffffff;
-            --border-glow: 0 0 15px rgba(0, 243, 255, 0.3);
+            --border-glow: 0 0 20px rgba(0, 243, 255, 0.25);
         }
 
         * {
@@ -30,143 +30,140 @@
             line-height: 1.7;
             background-color: var(--bg-color);
             color: var(--text-main);
-            background-image: 
-                radial-gradient(circle at 50% 10%, rgba(112, 0, 255, 0.1) 0%, transparent 60%),
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 30px 30px, 30px 30px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Scanline overlay pentru efect retro-futurist / CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
         }
 
         header {
-            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95), rgba(20, 10, 40, 0.95));
+            background: radial-gradient(circle at center, #0d1b3a 0%, #030712 100%);
             color: var(--text-bright);
             text-align: center;
-            padding: 80px 20px;
-            border-bottom: 2px solid var(--primary-glow);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            padding: 90px 20px;
+            border-bottom: 3px solid var(--primary-glow);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
             position: relative;
-            overflow: hidden;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 70%);
-            animation: pulseGlow 6s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        header h1 {
+        /* Animație de hologramă pe titlu */
+        .glitch-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 15px;
+            font-size: 44px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             color: var(--text-bright);
-            text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
-            letter-spacing: 2px;
             position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+            animation: textPulse 3s infinite alternate;
+        }
+
+        @keyframes textPulse {
+            0% { text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow); }
+            100% { text-shadow: 0 0 20px var(--secondary-glow), 0 0 40px var(--secondary-glow); }
         }
 
         header p {
             font-size: 18px;
-            color: var(--primary-glow);
-            letter-spacing: 1px;
-            position: relative;
+            color: var(--accent-green);
+            margin-top: 15px;
+            letter-spacing: 2px;
         }
 
         nav {
-            background: rgba(5, 11, 20, 0.95);
+            background: rgba(3, 7, 18, 0.95);
             text-align: center;
             padding: 15px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.4);
             backdrop-filter: blur(10px);
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 12px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 10px;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-glow);
-            transition: width 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 4px;
         }
 
         nav a:hover {
             color: var(--primary-glow);
-            text-shadow: 0 0 8px var(--primary-glow);
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
         }
 
         main {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: auto;
             padding: 40px 20px;
         }
 
         section {
             background: var(--panel-bg);
-            margin-bottom: 30px;
-            padding: 35px;
-            border-radius: 8px;
+            margin-bottom: 35px;
+            padding: 40px;
+            border-radius: 10px;
             border: 1px solid rgba(0, 243, 255, 0.2);
             box-shadow: var(--border-glow);
-            backdrop-filter: blur(5px);
             position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         section:hover {
             border-color: var(--primary-glow);
-            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+            transform: translateY(-4px);
+        }
+
+        /* Colțuri tăiate stil sci-fi */
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            border-bottom: 2px solid var(--primary-glow);
+            border-right: 2px solid var(--primary-glow);
         }
 
         h2 {
             font-family: 'Orbitron', sans-serif;
             color: var(--primary-glow);
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(0, 243, 255, 0.4);
-            border-left: 4px solid var(--accent-color);
-            padding-left: 12px;
+            border-left: 4px solid var(--secondary-glow);
+            padding-left: 15px;
             letter-spacing: 1px;
         }
 
         h3 {
             font-family: 'Orbitron', sans-serif;
             color: var(--text-bright);
-            font-size: 18px;
+            font-size: 19px;
             margin-top: 25px;
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
         }
 
         p {
@@ -181,89 +178,78 @@
 
         li {
             margin-bottom: 10px;
-            position: relative;
             list-style: none;
+            position: relative;
             padding-left: 20px;
         }
 
         li::before {
-            content: '>';
+            content: '⚡';
             position: absolute;
             left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
+            font-size: 12px;
+            color: var(--secondary-glow);
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             margin-top: 25px;
         }
 
         .card {
-            background: rgba(10, 35, 65, 0.6);
+            background: rgba(10, 25, 50, 0.7);
             padding: 25px;
-            border-radius: 6px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.25);
             transition: all 0.3s ease;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
         .card:hover {
-            background: rgba(15, 45, 85, 0.8);
-            border-color: var(--primary-glow);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .card:hover::before {
-            transform: translateX(100%);
+            border-color: var(--accent-green);
+            background: rgba(15, 35, 70, 0.9);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+            transform: translateY(-6px) scale(1.02);
         }
 
         .card h3 {
-            margin-top: 0;
             color: var(--primary-glow);
+            margin-top: 0;
+        }
+
+        /* Animație subtilă de fundal pentru elemente interactive */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         footer {
-            background: rgba(5, 11, 20, 0.95);
+            background: #030712;
             color: var(--text-main);
             text-align: center;
-            padding: 30px;
+            padding: 35px;
             margin-top: 50px;
-            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            border-top: 2px solid var(--primary-glow);
             font-size: 15px;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 28px;
-            }
-
-            nav a {
-                display: inline-block;
-                margin: 5px 8px;
-                font-size: 12px;
-            }
-
-            section {
-                padding: 20px;
-            }
+            .glitch-title { font-size: 28px; }
+            nav a { display: inline-block; margin: 4px 6px; font-size: 11px; }
+            section { padding: 20px; }
         }
     </style>
 </head>
@@ -271,14 +257,15 @@
 <body>
 
 <header>
-    <h1>[ CULTURA INFORMAȚIEI & TECH ]</h1>
-    <p>// Arhitectura digitală a societății moderne</p>
+    <h1 class="glitch-title">[ CULTURA INFO & GAME DESIGN ]</h1>
+    <p>// Arhitectura Digitală și Ingineria Lumilor Virtuale</p>
 </header>
 
 <nav>
     <a href="#introducere">Introducere</a>
     <a href="#cultura">Cultură</a>
     <a href="#tehnologii">Tehnologii</a>
+    <a href="#gamedesign">Game Design</a>
     <a href="#securitate">Securitate</a>
     <a href="#concluzie">Concluzie</a>
 </nav>
@@ -287,129 +274,115 @@
 
 <section id="introducere">
     <h2>Introducere în Matricea Informațională</h2>
-
     <p>
-        În societatea contemporană, informația reprezintă una dintre cele mai valoroase resurse strategice. Accesul rapid la date și utilizarea avansată a tehnologiilor informaționale au reconfigurat fundamental modalitățile prin care umanitatea procesează cunoașterea, comunică și operează în mediul profesional.
+        În era digitală modernă, informația reprezintă combustibilul principal al civilizației. Intersecția dintre cultura informației și puterea computațională a generat noi universuri de interacțiune, de la rețele globale de date până la simulări interactive avansate.
     </p>
-
     <p>
-        Cultura informațională definește capacitatea nativă sau dobândită a unui individ de a detecta, extrage, evalua critic, exploata eficient și distribui informația în condiții de maximă siguranță și responsabilitate cibernetică.
+        Dezvoltarea competențelor digitale nu se mai rezumă doar la simpla căutare de date, ci la înțelegerea modului în care sistemele procesează, afișează și protejează fluxurile de informație în timp real.
     </p>
 </section>
 
 <section id="cultura">
     <h2>Cultura Informației: Competențe de Bază</h2>
-
     <p>
-        Sistemul de competențe informaționale reprezintă setul de protocoale cognitive și tehnice necesare pentru navigarea sigură prin fluxul masiv de date.
+        Cultura informațională oferă utilizatorului un scut cognitiv împotriva haosului digital și a dezinformării.
     </p>
-
-    <h3>Protocoale esențiale</h3>
-
+    <h3>Protocoale esențiale de operare:</h3>
     <ul>
-        <li>identificarea automată a datelor necesare;</li>
-        <li>scanarea și interogarea surselor relevante;</li>
-        <li>validarea riguroasă a gradului de credibilitate;</li>
-        <li>decompilarea, analiza și sinteza informației;</li>
-        <li>gestionarea etică și responsabilă a fluxurilor;</li>
-        <li>criptarea și apărarea parametrilor personali.</li>
+        <li>identificarea automată a surselor de date valide;</li>
+        <li>filtrare rapidă și interogare prin algoritmi critici;</li>
+        <li>evaluarea nivelului de integritate și credibilitate;</li>
+        <li>analiza structurală și sinteza informației complexe;</li>
+        <li>utilizarea responsabilă și etică a rețelei;</li>
+        <li>apărarea parametrilor de confidențialitate personală.</li>
     </ul>
 </section>
 
 <section id="tehnologii">
     <h2>Tehnologii Informaționale Avansate</h2>
-
     <p>
-        Infrastructura tehnologică constituie rețeaua de sisteme hardware și software dedicată captării, procesării, stocării și transferului de date la scară globală.
+        Infrastructura tehnologică actuală susține un ecosistem imens de transfer de date, facilitând inovații radicale în toate sectoarele industriale.
     </p>
 
     <div class="cards">
-
         <div class="card">
             <h3>Rețeaua Globală</h3>
-            <p>Asigură interconectarea instantanee și accesul nelimitat la fluxul universal de informații.</p>
+            <p>Conexiuni de mare viteză care unesc baze de date planetare într-un singur flux continuu.</p>
         </div>
-
         <div class="card">
             <h3>Cloud Matrix</h3>
-            <p>Permite stocarea distribuită și accesarea dinamică a datelor prin servicii cloud securizate.</p>
+            <p>Arhitectură distribuită de stocare care permite accesul la date de oriunde din universul digital.</p>
         </div>
-
         <div class="card">
             <h3>Inteligența Artificială</h3>
-            <p>Algoritmi autonomi utilizați pentru decodarea masivelor de date și optimizarea deciziilor.</p>
+            <p>Sisteme autonome capabile să recunoască tipare, să automatizeze sarcini și să genereze conținut.</p>
         </div>
-
         <div class="card">
-            <h3>Baze de Date</h3>
-            <p>Arhive structurate de mare viteză pentru organizarea și regăsirea fiabilă a datelor.</p>
+            <h3>Baze de Date Cuantice</h3>
+            <p>Sisteme ultrarapide de stocare și indexare a unor cantități masive de informații structurate.</p>
         </div>
-
     </div>
 </section>
 
-<section>
-    <h2>Rolul Tehnologiei în Ecosistemul Digital</h2>
-
+<!-- SECȚIUNE NOUĂ: GAME DESIGN ÎN TEHNOLOGIE -->
+<section id="gamedesign">
+    <h2>Game Design și Tehnologii Interactive</h2>
     <p>
-        Integrarea soluțiilor digitale accelerează exponențial productivitatea, automatizează operațiunile repetitive și deschide căi directe către rezerve extinse de cunoaștere.
+        Game design-ul nu reprezintă doar arta de a crea jocuri, ci un pilon tehnologic major care fuzionează programarea avansată, psihologia umană, grafica 3D în timp real și cultura informației. Într-un mediu sci-fi, jocurile video sunt cel mai complex banc de testare pentru noile tehnologii.
     </p>
 
-    <h3>Avantaje strategice</h3>
+    <p>
+        Prin intermediul motoarelor grafice moderne (*Game Engines*), designerii construiesc simulări interactive care educă, antrenează și transpun utilizatorii în scenarii complexe de viitor.
+    </p>
 
-    <ul>
-        <li>flux ultra-rapid de date;</li>
-        <li>canale de comunicație criptate;</li>
-        <li>automatizarea proceselor logice;</li>
-        <li>analiza predictivă a datelor;</li>
-        <li>acces instantaneu la platforme educaționale;</li>
-        <li>sincronizare și colaborare în rețea.</li>
-    </ul>
+    <h3>Elemente Tehnologice în Game Design</h3>
+    <div class="cards">
+        <div class="card">
+            <h3>Motoare Grafice (Engines)</h3>
+            <p>Sisteme precum Unreal sau Unity randează lumi fizice complexe folosind fizică newtoniană și iluminare globală în timp real (Ray Tracing).</p>
+        </div>
+        <div class="card">
+            <h3>Inteligență Artificială (NPC-uri)</h3>
+            <p>Algoritmi comportamentali avansați care permit personajelor din jocuri să gândească, să se adapteze și să reacționeze dinamic la acțiunile jucătorului.</p>
+        </div>
+        <div class="card">
+            <h3>UI/UX Holografic</h3>
+            <p>Interfețe futuriste integrate organic în spațiul virtual, testând limitele ergonomiei digitale și ale fluxului informațional vizual.</p>
+        </div>
+        <div class="card">
+            <h3>Procedural Generation</h3>
+            <p>Tehnologii bazate pe algoritmi matematici capabile să genereze lumi, planete și conținut infinit în mod automat.</p>
+        </div>
+    </div>
 </section>
 
 <section id="securitate">
     <h2>Securitatea Cibernetică și Apărarea Datelor</h2>
-
     <p>
-        Odată cu expansiunea exponențială a rețelelor, fortificarea sistemelor și protejarea datelor împotriva intruziunilor au devenit o prioritate absolută.
+        Odată cu extinderea frontierelor digitale, securizarea fluxurilor de date și a identităților virtuale devine o linie vitală de apărare împotriva intruziunilor cibernetice.
     </p>
-
-    <h3>Directive de securitate</h3>
-
+    <h3>Directive de protecție:</h3>
     <ul>
-        <li>generarea unor parole complexe (multi-caracter);</li>
-        <li>implementarea autentificării biometrice sau în doi pași (2FA);</li>
-        <li>instalarea patch-urilor și actualizarea continuă a sistemelor;</li>
-        <li>filtrarea și evitarea linkurilor sau fișierelor corupte;</li>
-        <li>securizarea strictă a identitatii digitale;</li>
-        <li>stocarea copiilor de rezervă (backups) în medii izolate.</li>
+        <li>implementarea de parole criptate și complexe;</li>
+        <li>activarea autentificării multifactoriale (MFA / 2FA);</li>
+        <li>actualizarea constantă a protocoalelor de securitate;</li>
+        <li>filtrarea traficului suspect și evitarea vectorilor de atac;</li>
+        <li>protejarea identitatii digitale împotriva furtului de date;</li>
+        <li>stocarea de copii de siguranță (*backups*) izolate.</li>
     </ul>
-</section>
-
-<section>
-    <h2>Impactul Sistemic Asupra Societății</h2>
-
-    <p>
-        Transformarea digitală generează efecte profunde în sectoarele-cheie: educație, medicină, economie, infrastructură publică și interacțiune socială.
-    </p>
-
-    <p>
-        În paralel, supraexpunerea tehnologică și utilizarea necontrolată pot stimula vulnerabilități precum dezinformarea digitală, suprastimularea cognitivă și breșele de confidențialitate.
-    </p>
 </section>
 
 <section id="concluzie">
     <h2>Concluzie</h2>
-
     <p>
-        Cultura informației și tehnologiile avansate formează pilonii centrali ai civilizației digitale. Un utilizator avansat nu este doar un simplu consumator de date, ci un operator capabil să evalueze critic informația, să respecte protocoalele de securitate și să acționeze responsabil în spațiul virtual.
+        Cultura informației, tehnologiile avansate și game design-ul fuzionează într-un peisaj digital dinamic, transformând modul în care percepem realitatea. Un utilizator sau un creator de succes în era modernă trebuie să înțeleagă nu doar cum să consume datele, ci și cum să le modeleze în siguranță pentru a construi viitorul.
     </p>
 </section>
 
 </main>
 
 <footer>
-    <p>&copy; 2026 // Arhivă digitală – Cultura informației și tehnologiile informaționale</p>
+    <p>&copy; 2026 // Arhivă Centrală – Cultura Informației, Tehnologii și Game Design</p>
 </footer>
 
 </body>
