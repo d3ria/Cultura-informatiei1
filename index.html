@@ -3,121 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Cultura informației și tehnologiile informaționale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --bg-color: #050b14;
+            --panel-bg: rgba(10, 25, 47, 0.85);
+            --primary-glow: #00f3ff;
+            --secondary-glow: #7000ff;
+            --accent-color: #00ff66;
+            --text-main: #c0d8ff;
+            --text-bright: #ffffff;
+            --border-glow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background: #f4f7fb;
-            color: #222;
+            font-family: 'Share Tech Mono', monospace;
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(112, 0, 255, 0.1) 0%, transparent 60%),
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
         }
 
         header {
-            background: linear-gradient(135deg, #173b70, #2878c8);
-            color: white;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.95), rgba(20, 10, 40, 0.95));
+            color: var(--text-bright);
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
+            border-bottom: 2px solid var(--primary-glow);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 70%);
+            animation: pulseGlow 6s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         header h1 {
-            font-size: 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
             margin-bottom: 15px;
+            color: var(--text-bright);
+            text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+            letter-spacing: 2px;
+            position: relative;
         }
 
         header p {
-            font-size: 19px;
+            font-size: 18px;
+            color: var(--primary-glow);
+            letter-spacing: 1px;
+            position: relative;
         }
 
         nav {
-            background: #102b50;
+            background: rgba(5, 11, 20, 0.95);
             text-align: center;
             padding: 15px;
             position: sticky;
             top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         nav a {
-            color: white;
+            color: var(--text-main);
             text-decoration: none;
             margin: 0 15px;
-            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-glow);
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: #6ec6ff;
+            color: var(--primary-glow);
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         main {
             max-width: 1100px;
             margin: auto;
-            padding: 30px 20px;
+            padding: 40px 20px;
         }
 
         section {
-            background: white;
-            margin-bottom: 25px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            background: var(--panel-bg);
+            margin-bottom: 30px;
+            padding: 35px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            box-shadow: var(--border-glow);
+            backdrop-filter: blur(5px);
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        section:hover {
+            border-color: var(--primary-glow);
+            transform: translateY(-2px);
         }
 
         h2 {
-            color: #173b70;
-            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-glow);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.4);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+            letter-spacing: 1px;
         }
 
         h3 {
-            color: #2878c8;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-bright);
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 17px;
         }
 
         ul {
-            margin-left: 25px;
+            margin-left: 20px;
+            margin-top: 10px;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            position: relative;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .card {
-            background: #eef6ff;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #2878c8;
+            background: rgba(10, 35, 65, 0.6);
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover {
+            background: rgba(15, 45, 85, 0.8);
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-glow);
         }
 
         footer {
-            background: #102b50;
-            color: white;
+            background: rgba(5, 11, 20, 0.95);
+            color: var(--text-main);
             text-align: center;
-            padding: 25px;
-            margin-top: 30px;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            font-size: 15px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             header h1 {
                 font-size: 28px;
             }
 
             nav a {
-                display: block;
-                margin: 8px;
+                display: inline-block;
+                margin: 5px 8px;
+                font-size: 12px;
+            }
+
+            section {
+                padding: 20px;
             }
         }
     </style>
@@ -126,13 +271,13 @@
 <body>
 
 <header>
-    <h1>Cultura informației și tehnologiile informaționale</h1>
-    <p>Importanța informației și a tehnologiilor în societatea modernă</p>
+    <h1>[ CULTURA INFORMAȚIEI & TECH ]</h1>
+    <p>// Arhitectura digitală a societății moderne</p>
 </header>
 
 <nav>
     <a href="#introducere">Introducere</a>
-    <a href="#cultura">Cultura informației</a>
+    <a href="#cultura">Cultură</a>
     <a href="#tehnologii">Tehnologii</a>
     <a href="#securitate">Securitate</a>
     <a href="#concluzie">Concluzie</a>
@@ -141,144 +286,115 @@
 <main>
 
 <section id="introducere">
-    <h2>Introducere</h2>
+    <h2>Introducere în Matricea Informațională</h2>
 
     <p>
-        În societatea contemporană, informația reprezintă una dintre
-        cele mai importante resurse. Accesul rapid la informații și
-        utilizarea tehnologiilor informaționale au schimbat modul în
-        care oamenii învață, comunică și desfășoară activități
-        profesionale.
+        În societatea contemporană, informația reprezintă una dintre cele mai valoroase resurse strategice. Accesul rapid la date și utilizarea avansată a tehnologiilor informaționale au reconfigurat fundamental modalitățile prin care umanitatea procesează cunoașterea, comunică și operează în mediul profesional.
     </p>
 
     <p>
-        Cultura informației presupune capacitatea unei persoane de a
-        identifica, căuta, evalua, utiliza și transmite informații
-        într-un mod corect și responsabil.
+        Cultura informațională definește capacitatea nativă sau dobândită a unui individ de a detecta, extrage, evalua critic, exploata eficient și distribui informația în condiții de maximă siguranță și responsabilitate cibernetică.
     </p>
 </section>
 
 <section id="cultura">
-    <h2>Cultura informației</h2>
+    <h2>Cultura Informației: Competențe de Bază</h2>
 
     <p>
-        Cultura informației reprezintă totalitatea cunoștințelor,
-        competențelor și atitudinilor necesare pentru utilizarea
-        eficientă a informației.
+        Sistemul de competențe informaționale reprezintă setul de protocoale cognitive și tehnice necesare pentru navigarea sigură prin fluxul masiv de date.
     </p>
 
-    <h3>Principalele competențe</h3>
+    <h3>Protocoale esențiale</h3>
 
     <ul>
-        <li>identificarea informațiilor necesare;</li>
-        <li>căutarea informației în surse relevante;</li>
-        <li>evaluarea credibilității surselor;</li>
-        <li>analizarea și interpretarea informației;</li>
-        <li>utilizarea responsabilă a informației;</li>
-        <li>protejarea datelor personale.</li>
+        <li>identificarea automată a datelor necesare;</li>
+        <li>scanarea și interogarea surselor relevante;</li>
+        <li>validarea riguroasă a gradului de credibilitate;</li>
+        <li>decompilarea, analiza și sinteza informației;</li>
+        <li>gestionarea etică și responsabilă a fluxurilor;</li>
+        <li>criptarea și apărarea parametrilor personali.</li>
     </ul>
 </section>
 
 <section id="tehnologii">
-    <h2>Tehnologii informaționale</h2>
+    <h2>Tehnologii Informaționale Avansate</h2>
 
     <p>
-        Tehnologiile informaționale reprezintă instrumentele și
-        sistemele utilizate pentru colectarea, prelucrarea,
-        stocarea și transmiterea informației.
+        Infrastructura tehnologică constituie rețeaua de sisteme hardware și software dedicată captării, procesării, stocării și transferului de date la scară globală.
     </p>
 
     <div class="cards">
 
         <div class="card">
-            <h3>Internet</h3>
-            <p>
-                Permite accesul rapid la informații și facilitează
-                comunicarea la nivel global.
-            </p>
+            <h3>Rețeaua Globală</h3>
+            <p>Asigură interconectarea instantanee și accesul nelimitat la fluxul universal de informații.</p>
         </div>
 
         <div class="card">
-            <h3>Cloud</h3>
-            <p>
-                Permite stocarea și accesarea datelor prin intermediul
-                serviciilor online.
-            </p>
+            <h3>Cloud Matrix</h3>
+            <p>Permite stocarea distribuită și accesarea dinamică a datelor prin servicii cloud securizate.</p>
         </div>
 
         <div class="card">
-            <h3>Inteligența artificială</h3>
-            <p>
-                Este utilizată pentru analizarea datelor,
-                automatizare și crearea unor soluții inteligente.
-            </p>
+            <h3>Inteligența Artificială</h3>
+            <p>Algoritmi autonomi utilizați pentru decodarea masivelor de date și optimizarea deciziilor.</p>
         </div>
 
         <div class="card">
-            <h3>Baze de date</h3>
-            <p>
-                Permit organizarea, stocarea și gestionarea unor
-                cantități mari de informații.
-            </p>
+            <h3>Baze de Date</h3>
+            <p>Arhive structurate de mare viteză pentru organizarea și regăsirea fiabilă a datelor.</p>
         </div>
 
     </div>
 </section>
 
 <section>
-    <h2>Rolul tehnologiilor informaționale în domeniu</h2>
+    <h2>Rolul Tehnologiei în Ecosistemul Digital</h2>
 
     <p>
-        Utilizarea tehnologiilor informaționale contribuie la
-        creșterea eficienței activităților, automatizarea proceselor,
-        comunicarea rapidă și accesul la resurse digitale.
+        Integrarea soluțiilor digitale accelerează exponențial productivitatea, automatizează operațiunile repetitive și deschide căi directe către rezerve extinse de cunoaștere.
     </p>
 
-    <h3>Avantaje</h3>
+    <h3>Avantaje strategice</h3>
 
     <ul>
-        <li>acces rapid la informații;</li>
-        <li>comunicare eficientă;</li>
-        <li>automatizarea activităților;</li>
-        <li>prelucrarea rapidă a datelor;</li>
-        <li>acces la educație online;</li>
-        <li>colaborare la distanță.</li>
+        <li>flux ultra-rapid de date;</li>
+        <li>canale de comunicație criptate;</li>
+        <li>automatizarea proceselor logice;</li>
+        <li>analiza predictivă a datelor;</li>
+        <li>acces instantaneu la platforme educaționale;</li>
+        <li>sincronizare și colaborare în rețea.</li>
     </ul>
 </section>
 
 <section id="securitate">
-    <h2>Securitatea informației</h2>
+    <h2>Securitatea Cibernetică și Apărarea Datelor</h2>
 
     <p>
-        Odată cu dezvoltarea tehnologiilor, protejarea informațiilor
-        a devenit foarte importantă.
+        Odată cu expansiunea exponențială a rețelelor, fortificarea sistemelor și protejarea datelor împotriva intruziunilor au devenit o prioritate absolută.
     </p>
 
-    <h3>Reguli importante</h3>
+    <h3>Directive de securitate</h3>
 
     <ul>
-        <li>folosirea unor parole puternice;</li>
-        <li>activarea autentificării în doi pași;</li>
-        <li>actualizarea programelor;</li>
-        <li>evitarea accesării linkurilor suspecte;</li>
-        <li>protejarea datelor personale;</li>
-        <li>realizarea copiilor de siguranță.</li>
+        <li>generarea unor parole complexe (multi-caracter);</li>
+        <li>implementarea autentificării biometrice sau în doi pași (2FA);</li>
+        <li>instalarea patch-urilor și actualizarea continuă a sistemelor;</li>
+        <li>filtrarea și evitarea linkurilor sau fișierelor corupte;</li>
+        <li>securizarea strictă a identitatii digitale;</li>
+        <li>stocarea copiilor de rezervă (backups) în medii izolate.</li>
     </ul>
 </section>
 
 <section>
-    <h2>Impactul asupra societății</h2>
+    <h2>Impactul Sistemic Asupra Societății</h2>
 
     <p>
-        Tehnologiile informaționale au un impact major asupra
-        educației, medicinei, economiei, administrației publice,
-        comunicării și mediului profesional.
+        Transformarea digitală generează efecte profunde în sectoarele-cheie: educație, medicină, economie, infrastructură publică și interacțiune socială.
     </p>
 
     <p>
-        În același timp, utilizarea excesivă sau iresponsabilă a
-        tehnologiilor poate genera probleme precum dezinformarea,
-        dependența de dispozitive și încălcarea vieții private.
+        În paralel, supraexpunerea tehnologică și utilizarea necontrolată pot stimula vulnerabilități precum dezinformarea digitală, suprastimularea cognitivă și breșele de confidențialitate.
     </p>
 </section>
 
@@ -286,20 +402,15 @@
     <h2>Concluzie</h2>
 
     <p>
-        Cultura informației și tehnologiile informaționale sunt
-        elemente esențiale ale societății moderne. O persoană
-        competentă din punct de vedere informațional trebuie să
-        știe nu doar să găsească informații, ci și să le evalueze,
-        să le utilizeze corect și să respecte principiile de
-        securitate și responsabilitate digitală.
+        Cultura informației și tehnologiile avansate formează pilonii centrali ai civilizației digitale. Un utilizator avansat nu este doar un simplu consumator de date, ci un operator capabil să evalueze critic informația, să respecte protocoalele de securitate și să acționeze responsabil în spațiul virtual.
     </p>
 </section>
 
 </main>
 
 <footer>
-    <p>© 2026 - Cultura informației și tehnologiile informaționale</p>
+    <p>&copy; 2026 // Arhivă digitală – Cultura informației și tehnologiile informaționale</p>
 </footer>
 
 </body>
-</html>
+</html> 
