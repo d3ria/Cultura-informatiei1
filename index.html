@@ -9,10 +9,11 @@
     <style>
         :root {
             --bg-color: #030712;
-            --panel-bg: rgba(8, 18, 38, 0.85);
+            --panel-bg: rgba(8, 18, 38, 0.9);
             --primary-glow: #00f3ff;
             --secondary-glow: #ff0055;
             --accent-green: #00ff66;
+            --accent-yellow: #f3e600;
             --text-main: #b8d4ff;
             --text-bright: #ffffff;
             --border-glow: 0 0 20px rgba(0, 243, 255, 0.25);
@@ -34,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* Scanline overlay pentru efect retro-futurist / CRT */
+        /* Scanline overlay pentru efect CRT */
         body::before {
             content: " ";
             display: block;
@@ -50,16 +51,15 @@
             background: radial-gradient(circle at center, #0d1b3a 0%, #030712 100%);
             color: var(--text-bright);
             text-align: center;
-            padding: 90px 20px;
+            padding: 80px 20px;
             border-bottom: 3px solid var(--primary-glow);
             box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
             position: relative;
         }
 
-        /* Animație de hologramă pe titlu */
         .glitch-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 44px;
+            font-size: 42px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -96,7 +96,7 @@
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            margin: 0 12px;
+            margin: 0 10px;
             font-family: 'Orbitron', sans-serif;
             font-size: 13px;
             font-weight: 600;
@@ -112,16 +112,33 @@
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
         }
 
+        /* Buton special în meniu pentru a deschide fereastra de resurse */
+        .nav-btn-resources {
+            color: var(--accent-yellow) !important;
+            border: 1px dashed var(--accent-yellow);
+            cursor: pointer;
+        }
+        .nav-btn-resources:hover {
+            background: rgba(243, 230, 0, 0.15) !important;
+            box-shadow: 0 0 12px rgba(243, 230, 0, 0.5) !important;
+        }
+
         main {
-            max-width: 1150px;
+            max-width: 1200px;
             margin: auto;
             padding: 40px 20px;
         }
 
+        /* Layout Asimetric Diversificat (Fără linii drepte monotone) */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+        }
+
         section {
             background: var(--panel-bg);
-            margin-bottom: 35px;
-            padding: 40px;
+            padding: 35px;
             border-radius: 10px;
             border: 1px solid rgba(0, 243, 255, 0.2);
             box-shadow: var(--border-glow);
@@ -130,13 +147,22 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Distribuție unică, asimetrică în grid */
+        .sec-intro { grid-column: span 12; }
+        .sec-cultura { grid-column: span 7; transform: rotate(-0.3deg); }
+        .sec-tehnologii { grid-column: span 5; transform: rotate(0.4deg); }
+        .sec-gamedesign { grid-column: span 12; border-color: rgba(255, 0, 85, 0.4); }
+        .sec-securitate { grid-column: span 6; transform: rotate(0.2deg); }
+        .sec-concluzie { grid-column: span 6; transform: rotate(-0.2deg); }
+
         section:hover {
             border-color: var(--primary-glow);
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
-            transform: translateY(-4px);
+            transform: translateY(-4px) rotate(0deg) !important;
+            z-index: 10;
         }
 
-        /* Colțuri tăiate stil sci-fi */
+        /* Colțuri tăiate sci-fi */
         section::after {
             content: '';
             position: absolute;
@@ -151,8 +177,8 @@
         h2 {
             font-family: 'Orbitron', sans-serif;
             color: var(--primary-glow);
-            font-size: 26px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 18px;
             border-left: 4px solid var(--secondary-glow);
             padding-left: 15px;
             letter-spacing: 1px;
@@ -161,14 +187,14 @@
         h3 {
             font-family: 'Orbitron', sans-serif;
             color: var(--text-bright);
-            font-size: 19px;
-            margin-top: 25px;
-            margin-bottom: 12px;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         p {
             margin-bottom: 15px;
-            font-size: 17px;
+            font-size: 16px;
         }
 
         ul {
@@ -177,7 +203,7 @@
         }
 
         li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             list-style: none;
             position: relative;
             padding-left: 20px;
@@ -193,14 +219,14 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .card {
             background: rgba(10, 25, 50, 0.7);
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             border: 1px solid rgba(0, 243, 255, 0.25);
             transition: all 0.3s ease;
@@ -212,7 +238,7 @@
             border-color: var(--accent-green);
             background: rgba(15, 35, 70, 0.9);
             box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
-            transform: translateY(-6px) scale(1.02);
+            transform: translateY(-4px);
         }
 
         .card h3 {
@@ -220,19 +246,98 @@
             margin-top: 0;
         }
 
-        /* Animație subtilă de fundal pentru elemente interactive */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        /* --- FEREASTRA INTERACTIVĂ (MODAL) PENTRU RESURSE --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            z-index: 10000;
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        .modal-window {
+            background: #081226;
+            border: 2px solid var(--accent-yellow);
+            border-radius: 12px;
+            max-width: 750px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(243, 230, 0, 0.3);
+            position: relative;
+            animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(243, 230, 0, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--accent-yellow);
+            border-left-color: var(--accent-yellow);
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: 1px solid var(--secondary-glow);
+            color: var(--secondary-glow);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: var(--secondary-glow);
+            color: #fff;
+            box-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        .resource-category {
+            margin-bottom: 20px;
+            background: rgba(3, 7, 18, 0.6);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-glow);
+        }
+
+        .resource-category h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-glow);
+            margin-bottom: 8px;
+        }
+
+        .resource-category ul li::before {
+            content: '📁';
+        }
+
+        .resource-category a {
+            color: var(--text-main);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .resource-category a:hover {
+            color: var(--accent-green);
         }
 
         footer {
@@ -246,10 +351,13 @@
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            .glitch-title { font-size: 28px; }
-            nav a { display: inline-block; margin: 4px 6px; font-size: 11px; }
-            section { padding: 20px; }
+        @media (max-width: 900px) {
+            .sec-intro, .sec-cultura, .sec-tehnologii, .sec-gamedesign, .sec-securitate, .sec-concluzie {
+                grid-column: span 12 !important;
+                transform: none !important;
+            }
+            .glitch-title { font-size: 26px; }
+            nav a { display: inline-block; margin: 4px 5px; font-size: 11px; }
         }
     </style>
 </head>
@@ -268,122 +376,149 @@
     <a href="#gamedesign">Game Design</a>
     <a href="#securitate">Securitate</a>
     <a href="#concluzie">Concluzie</a>
+    <a class="nav-btn-resources" onclick="openModal()">[ ⚡ Resurse de Studiu ]</a>
 </nav>
 
 <main>
+    <div class="grid-layout">
 
-<section id="introducere">
-    <h2>Introducere în Matricea Informațională</h2>
-    <p>
-        În era digitală modernă, informația reprezintă combustibilul principal al civilizației. Intersecția dintre cultura informației și puterea computațională a generat noi universuri de interacțiune, de la rețele globale de date până la simulări interactive avansate.
-    </p>
-    <p>
-        Dezvoltarea competențelor digitale nu se mai rezumă doar la simpla căutare de date, ci la înțelegerea modului în care sistemele procesează, afișează și protejează fluxurile de informație în timp real.
-    </p>
-</section>
+        <section id="introducere" class="sec-intro">
+            <h2>Introducere în Matricea Informațională</h2>
+            <p>
+                În era digitală modernă, informația reprezintă combustibilul principal al civilizației. Intersecția dintre cultura informației și puterea computațională a generat noi universuri de interacțiune, de la rețele globale de date până la simulări interactive avansate.
+            </p>
+            <p>
+                Dezvoltarea competențelor digitale nu se mai rezumă doar la simpla căutare de date, ci la înțelegerea modului în care sistemele procesează, afișează și protejează fluxurile de informație în timp real.
+            </p>
+        </section>
 
-<section id="cultura">
-    <h2>Cultura Informației: Competențe de Bază</h2>
-    <p>
-        Cultura informațională oferă utilizatorului un scut cognitiv împotriva haosului digital și a dezinformării.
-    </p>
-    <h3>Protocoale esențiale de operare:</h3>
-    <ul>
-        <li>identificarea automată a surselor de date valide;</li>
-        <li>filtrare rapidă și interogare prin algoritmi critici;</li>
-        <li>evaluarea nivelului de integritate și credibilitate;</li>
-        <li>analiza structurală și sinteza informației complexe;</li>
-        <li>utilizarea responsabilă și etică a rețelei;</li>
-        <li>apărarea parametrilor de confidențialitate personală.</li>
-    </ul>
-</section>
+        <section id="cultura" class="sec-cultura">
+            <h2>Cultura Informației: Competențe de Bază</h2>
+            <p>Cultura informațională oferă utilizatorului un scut cognitiv împotriva haosului digital.</p>
+            <h3>Protocoale esențiale:</h3>
+            <ul>
+                <li>identificarea automată a surselor de date valide;</li>
+                <li>filtrare rapidă și interogare prin algoritmi critici;</li>
+                <li>evaluarea nivelului de integritate și credibilitate;</li>
+                <li>analiza structurală și sinteza informației complexe.</li>
+            </ul>
+        </section>
 
-<section id="tehnologii">
-    <h2>Tehnologii Informaționale Avansate</h2>
-    <p>
-        Infrastructura tehnologică actuală susține un ecosistem imens de transfer de date, facilitând inovații radicale în toate sectoarele industriale.
-    </p>
+        <section id="tehnologii" class="sec-tehnologii">
+            <h2>Tehnologii Avansate</h2>
+            <p>Infrastructura tehnologică actuală susține un ecosistem imens de transfer de date.</p>
+            <div class="cards" style="grid-template-columns: 1fr;">
+                <div class="card">
+                    <h3>Cloud Matrix & Rețele</h3>
+                    <p>Arhitecturi distribuite pentru accesul global la date securizate.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="cards">
-        <div class="card">
-            <h3>Rețeaua Globală</h3>
-            <p>Conexiuni de mare viteză care unesc baze de date planetare într-un singur flux continuu.</p>
-        </div>
-        <div class="card">
-            <h3>Cloud Matrix</h3>
-            <p>Arhitectură distribuită de stocare care permite accesul la date de oriunde din universul digital.</p>
-        </div>
-        <div class="card">
-            <h3>Inteligența Artificială</h3>
-            <p>Sisteme autonome capabile să recunoască tipare, să automatizeze sarcini și să genereze conținut.</p>
-        </div>
-        <div class="card">
-            <h3>Baze de Date Cuantice</h3>
-            <p>Sisteme ultrarapide de stocare și indexare a unor cantități masive de informații structurate.</p>
-        </div>
+        <section id="gamedesign" class="sec-gamedesign">
+            <h2>Game Design și Tehnologii Interactive</h2>
+            <p>
+                Game design-ul fuzionează programarea avansată, psihologia umană și grafica 3D în timp real. Prin motoare grafice (*Game Engines*), designerii construiesc simulări interactive care educă și transpun utilizatorii în scenarii complexe de viitor.
+            </p>
+            <h3>Componente majore:</h3>
+            <div class="cards">
+                <div class="card">
+                    <h3>Motoare Grafice</h3>
+                    <p>Sisteme de randare fizică avansată (Ray Tracing) pentru lumi 3D imersive.</p>
+                </div>
+                <div class="card">
+                    <h3>Inteligență Artificială</h3>
+                    <p>Algoritmi comportamentali care animă personajele non-jucător (NPC).</p>
+                </div>
+                <div class="card">
+                    <h3>Procedural Generation</h3>
+                    <p>Crearea automată de medii și conținut infinit prin ecuații matematice.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="securitate" class="sec-securitate">
+            <h2>Securitatea Cibernetică</h2>
+            <p>Protejarea datelor și a identităților virtuale împotriva intruziunilor.</p>
+            <ul>
+                <li>parole criptate și complexe;</li>
+                <li>autentificare multifactorială (2FA);</li>
+                <li>copii de siguranță (*backups*) izolate.</li>
+            </ul>
+        </section>
+
+        <section id="concluzie" class="sec-concluzie">
+            <h2>Concluzie</h2>
+            <p>
+                Cultura informației, tehnologiile și game design-ul fuzionează într-un peisaj dinamic. Un creator de succes trebuie să știe cum să modeleze datele în siguranță pentru a construi viitorul digital.
+            </p>
+        </section>
+
     </div>
-</section>
-
-<!-- SECȚIUNE NOUĂ: GAME DESIGN ÎN TEHNOLOGIE -->
-<section id="gamedesign">
-    <h2>Game Design și Tehnologii Interactive</h2>
-    <p>
-        Game design-ul nu reprezintă doar arta de a crea jocuri, ci un pilon tehnologic major care fuzionează programarea avansată, psihologia umană, grafica 3D în timp real și cultura informației. Într-un mediu sci-fi, jocurile video sunt cel mai complex banc de testare pentru noile tehnologii.
-    </p>
-
-    <p>
-        Prin intermediul motoarelor grafice moderne (*Game Engines*), designerii construiesc simulări interactive care educă, antrenează și transpun utilizatorii în scenarii complexe de viitor.
-    </p>
-
-    <h3>Elemente Tehnologice în Game Design</h3>
-    <div class="cards">
-        <div class="card">
-            <h3>Motoare Grafice (Engines)</h3>
-            <p>Sisteme precum Unreal sau Unity randează lumi fizice complexe folosind fizică newtoniană și iluminare globală în timp real (Ray Tracing).</p>
-        </div>
-        <div class="card">
-            <h3>Inteligență Artificială (NPC-uri)</h3>
-            <p>Algoritmi comportamentali avansați care permit personajelor din jocuri să gândească, să se adapteze și să reacționeze dinamic la acțiunile jucătorului.</p>
-        </div>
-        <div class="card">
-            <h3>UI/UX Holografic</h3>
-            <p>Interfețe futuriste integrate organic în spațiul virtual, testând limitele ergonomiei digitale și ale fluxului informațional vizual.</p>
-        </div>
-        <div class="card">
-            <h3>Procedural Generation</h3>
-            <p>Tehnologii bazate pe algoritmi matematici capabile să genereze lumi, planete și conținut infinit în mod automat.</p>
-        </div>
-    </div>
-</section>
-
-<section id="securitate">
-    <h2>Securitatea Cibernetică și Apărarea Datelor</h2>
-    <p>
-        Odată cu extinderea frontierelor digitale, securizarea fluxurilor de date și a identităților virtuale devine o linie vitală de apărare împotriva intruziunilor cibernetice.
-    </p>
-    <h3>Directive de protecție:</h3>
-    <ul>
-        <li>implementarea de parole criptate și complexe;</li>
-        <li>activarea autentificării multifactoriale (MFA / 2FA);</li>
-        <li>actualizarea constantă a protocoalelor de securitate;</li>
-        <li>filtrarea traficului suspect și evitarea vectorilor de atac;</li>
-        <li>protejarea identitatii digitale împotriva furtului de date;</li>
-        <li>stocarea de copii de siguranță (*backups*) izolate.</li>
-    </ul>
-</section>
-
-<section id="concluzie">
-    <h2>Concluzie</h2>
-    <p>
-        Cultura informației, tehnologiile avansate și game design-ul fuzionează într-un peisaj digital dinamic, transformând modul în care percepem realitatea. Un utilizator sau un creator de succes în era modernă trebuie să înțeleagă nu doar cum să consume datele, ci și cum să le modeleze în siguranță pentru a construi viitorul.
-    </p>
-</section>
-
 </main>
+
+<!-- FEREASTRA MODALĂ PENTRU RESURSE DE STUDIU -->
+<div id="resourcesModal" class="modal-overlay">
+    <div class="modal-window">
+        <div class="modal-header">
+            <h2>[ BANCUL DE RESURSE PENTRU STUDIU ]</h2>
+            <button class="close-btn" onclick="closeModal()">[ X ]</button>
+        </div>
+        <p style="color: var(--accent-yellow); margin-bottom: 20px;">// Directive de acces la platforme de formare în IT și Game Design:</p>
+
+        <div class="resource-category">
+            <h4>1. Game Design & Motoare Grafice</h4>
+            <ul>
+                <li><strong>Unreal Engine Learning:</strong> Documentație oficială și cursuri pentru programare Blueprints și C++ (<a href="https://www.unrealengine.com" target="_blank">unrealengine.com</a>)</li>
+                <li><strong>Unity Learn:</strong> Platformă completă pentru învățarea designului de jocuri și C# (<a href="https://learn.unity.com" target="_blank">learn.unity.com</a>)</li>
+                <li><strong>Brackys / GDC (YouTube):</strong> Arhive video esențiale despre mecanici de joc și design de nivel.</li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h4>2. Programare & IT Fundamentals</h4>
+            <ul>
+                <li><strong>freeCodeCamp & MDN Web Docs:</strong> Resurse gratuite pentru structură web, HTML, CSS și JavaScript (<a href="https://developer.mozilla.org" target="_blank">developer.mozilla.org</a>)</li>
+                <li><strong>GitHub & Git Documentation:</strong> Ghiduri oficiale pentru controlul versiunilor și publicarea proiectelor.</li>
+            </ul>
+        </div>
+
+        <div class="resource-category">
+            <h4>3. Securitate Cibernetică & Cultură Informațională</h4>
+            <ul>
+                <li><strong>TryHackMe / Hack The Box:</strong> Platforme interactive pentru învățarea securității cibernetice prin practică.</li>
+                <li><strong>UNESCO MIL (Media and Information Literacy):</strong> Ghiduri globale pentru dezvoltarea culturii informației și gândirii critice.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
+            <button class="close-btn" style="padding: 8px 20px;" onclick="closeModal()">Închide Fereastra</button>
+        </div>
+    </div>
+</div>
 
 <footer>
     <p>&copy; 2026 // Arhivă Centrală – Cultura Informației, Tehnologii și Game Design</p>
 </footer>
 
+<!-- SCRIPT PENTRU CONTROLUL FERESTREI MODALE -->
+<script>
+    function openModal() {
+        document.getElementById('resourcesModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('resourcesModal').style.display = 'none';
+    }
+
+    // Închide fereastra dacă utilizatorul dă click în afara ei
+    window.onclick = function(event) {
+        let modal = document.getElementById('resourcesModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
 </body>
-</html> 
+</html>
